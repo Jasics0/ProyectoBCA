@@ -11,7 +11,7 @@
         <h1>Editar Empleado:  </h1>
 
         <h3>Usuario:  <c:out value="${usernameS}"/></h3>
-        <form method="POST" action="EditarCliente">
+        <form method="POST" action="EditarEmpleado">
             <input type="hidden" name="usernameS" value="<c:out value="${usernameS}"/>"/>
             <input type="hidden" name="usernameO" value="<c:out value="${username}"/>"/>
             <input type="hidden" name="idO" value="<c:out value="${id}"/>"/>

@@ -27,7 +27,7 @@
             <input type="submit" value="Facturas"/>
         </form>
         <br>
-        <form action="Tickets.jsp" method="post">
+        <form action="Tickets" method="post">
             <input type="hidden" name="usernameS"value="<c:out value="${usernameS}"/> <%= ((usernameS == null) ? "" : usernameS)%>"/>
             <input type="submit" value="Tickets"/>
         </form>

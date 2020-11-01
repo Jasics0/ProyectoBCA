@@ -56,7 +56,7 @@ public class ConsultaCliente extends HttpServlet {
                 request.setAttribute("direccion", client.getDireccion());
                 request.setAttribute("telefono", client.getTelefono());
                 request.setAttribute("id", client.getIdCliente());
-                request.setAttribute("plan", client.getPlan().getNombre());
+                request.setAttribute("plan", (client.getPlan()==null) ? "Sin plan" : client.getPlan().getNombre());
                 request.setAttribute("estado", (client.getEstadoCliente()) ? "Activo" : "Desactivo");
                 request.setAttribute("lista",daoPlan.findPlanesEntities());
 

@@ -5,16 +5,23 @@
  */
 package DTO;
 
+import DAO.ClientesJpaController;
+import DAO.EmpleadosJpaController;
+import DataBase.DataBase;
 import java.io.Serializable;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Persistence;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -64,12 +71,62 @@ public class Tickets implements Serializable {
     public Tickets() {
     }
 
+    public Tickets(String servicio, Date fechaInicial, Date fechaFinal, String prioridad, Boolean estadoTicket, String idCliente, String username) {
+        generarCod();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("BCATelecomunicacionesPU");
+        this.servicio = servicio;
+        this.fechaInicial = fechaInicial;
+        this.fechaFinal = fechaFinal;
+        this.prioridad = prioridad;
+        this.estadoTicket = estadoTicket;
+        this.idCliente = new ClientesJpaController(emf).findClientes(idCliente);
+        this.idEmpleado=encontrarEmpleado(username, emf);
+    }
+
     public Tickets(String codigoTicket) {
         this.codigoTicket = codigoTicket;
     }
 
+    public void generarCod() {
+        DataBase db = new DataBase();
+        ResultSet rs = db.consulta("select * from tickets order by codigo_ticket desc limit 1");
+        ResultSet rs2 = db.consulta("select count(*) from tickets");
+        try {
+            rs.next();
+            rs2.next();
+
+            if (Integer.parseInt(rs2.getString(1)) == 0) {
+                codigoTicket = "T0001";
+            } else {
+                int i = Integer.parseInt(rs.getString(1).charAt((rs.getString(1).length()) - 1) + "");
+                codigoTicket = "T000" + (i + 1);
+            }
+        } catch (SQLException ex) {
+
+        }
+    }
+
     public String getCodigoTicket() {
         return codigoTicket;
+    }
+
+    public  Empleados encontrarEmpleado(String username, EntityManagerFactory emf) {
+        String usuario="";
+        
+        for (int i = 0; i < username.length(); i++) {
+            if(username.charAt(i)!=' '){
+            usuario+=username.charAt(i);
+            }
+        }
+        DataBase db = new DataBase();
+        ResultSet rs = db.consulta("select * from empleados WHERE (username='" + usuario + "')");
+        try {
+            rs.next();
+            Empleados emp = new EmpleadosJpaController(emf).findEmpleados(rs.getString(1));
+            return emp;
+        } catch (SQLException ex) {
+            return null;
+        }
     }
 
     public void setCodigoTicket(String codigoTicket) {
@@ -156,5 +213,6 @@ public class Tickets implements Serializable {
     public String toString() {
         return "DTO.Tickets[ codigoTicket=" + codigoTicket + " ]";
     }
-    
+
+
 }

@@ -99,10 +99,18 @@ public class Planes implements Serializable {
 
     public void generarCod() {
         DataBase db = new DataBase();
-        ResultSet rs = db.consulta("SELECT count(*) FROM planes");
+        ResultSet rs = db.consulta("select * from planes order by cod_producto desc limit 1");
+        ResultSet rs2 = db.consulta("select count(*) from planes");
         try {
             rs.next();
-            codProducto = "P000" + (Integer.parseInt(rs.getString(1)) + 1);
+            rs2.next();
+
+            if (Integer.parseInt(rs2.getString(1)) == 0) {
+                codProducto = "P0001";
+            } else {
+                int i = Integer.parseInt(rs.getString(1).charAt((rs.getString(1).length()) - 1) + "");
+                codProducto = "P000" + (i + 1);
+            }
         } catch (SQLException ex) {
 
         }
