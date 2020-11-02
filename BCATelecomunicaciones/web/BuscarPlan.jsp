@@ -4,8 +4,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>BCA | Resultado</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="css/BuscarPlan.css">
+        <link rel="icon" href="images/Icon.ico">
     </head>
     <body>
         <h1>Busqueda Plan:  </h1>
@@ -14,24 +17,19 @@
             username = request.getParameter("usernameS");
         %>
         <h3>Usuario:  <c:out value="${usernameS}"/></h3>
-        <form method="POST" action="OpcionesPlanes">
+        <form class="pantalla text-center" method="POST" action="OpcionesPlanes">
             <input type="hidden" name="usernameS" value="<c:out value="${usernameS}"/>"/>
-            <table>
-                <tr>
-                    <td><label>Codigo: </label><input type="text" name="id" value="<c:out value="${codigo}"/>" disabled/></td>
-                    <td><label>Descripcion: </label><input type="text" name="descripcion" value="<c:out value="${descripcion}"/>" disabled/></td>
-                    <td><label>Nombre: </label><input type="text" name="nombre" value="<c:out value="${nombre}"/>" disabled/></td>
-                </tr>
-                <tr>
-                    <td>   
-                        <br>
-                        <label>Valor: </label><input type="number" name="valor" value="<c:out value="${valor}"/>" disabled/></td>
-                </tr>
-              
-            </table>
+             
+           <div class="campos">
+                    <label>Codigo: </label><input type="text" name="id" value="<c:out value="${codigo}"/>" disabled/>
+                    <label>Descripcion: </label><input type="text" name="descripcion" value="<c:out value="${descripcion}"/>" disabled/>
+                    <br>
+                    <label>Nombre: </label><input type="text" name="nombre" value="<c:out value="${nombre}"/>" disabled/>
+                    <label>Valor: </label><input type="number" name="valor" value="<c:out value="${valor}"/>" disabled/>
+             </div>
             <br>
-            <input type="submit" value="Atrás"/>
+            <button class="btn btn-primary" id="atras" type="submit"> Atrás</button>
         </form>
-        <br>
+        
     </body>
 </html>

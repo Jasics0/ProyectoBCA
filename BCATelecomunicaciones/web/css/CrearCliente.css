@@ -1,0 +1,71 @@
+body{
+    background: url(../images/slider4.jpg) no-repeat center fixed;
+    background-size: cover;
+}
+.modal-content{
+    background-color: #3b4652;
+    opacity: .95;
+    box-shadow: 0px 0px 3px #848484;
+    padding-left: 50px;
+    padding-right: 50px;
+    width: 600px;
+    
+}
+
+button{
+    width: 35%;
+    margin: 10px;   
+}
+
+#ingresar{
+    width: 55%;
+    margin: 10px;
+}
+.campos{
+    width: 40%;
+    border: 0;
+    border-radius: 5px;
+    padding: 8px; 
+    margin-right: 10px; 
+}
+.campos2{
+    width: 46%;
+    border: 0;
+    border-radius: 5px;
+    padding: 8px; 
+    margin-right: 10px; 
+}
+.rolboton{
+    font-size: 20px;
+    font-family: Comic Sans MS;
+    padding-right: 20px; 
+}
+.g-recaptcha{
+    margin-left: 98px
+}
+select{
+    padding: 10px;
+    width: 60%;
+    border-radius: 5%
+}
+h1{
+    text-align: center;
+    font-family: Comic Sans MS;
+    font-size: 60px;
+    color: white;   
+    margin-top: 20px;
+    padding-left: 125px 
+}
+h3{
+    font-family: Bradley Hand ITC;
+    font-size: 30px;
+    color: white;
+    margin: 10px;
+    font-weight: bold;
+    padding: 20px;
+}
+#atras{
+    margin-left: 710px;
+    width: 31.2%;
+}
+
