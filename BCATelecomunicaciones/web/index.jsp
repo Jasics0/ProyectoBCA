@@ -12,13 +12,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="css/index.css">
-              <link rel="icon" href="images/Icon.ico">
+        <link rel="icon" href="images/Icon.ico">
     </head>
     <body>
         <div class="modal-dialog text-center">
-            <h1>BCA Telecomunicaciones </h1>
+            <h1><img id="imagenlogo" src="images/logoblanco.png"/>BCA Telecomunicaciones </h1>
+            
             <div class="col-sm-8 main-section">
-                
+
                 <div class="modal-content">
                     <div class="col-12 user-img" >
                         <img id="imagen" src="images/user2.png"/>

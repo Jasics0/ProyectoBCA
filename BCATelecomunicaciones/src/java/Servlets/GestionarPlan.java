@@ -45,7 +45,10 @@ public class GestionarPlan extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>BCA | Error de busqueda</title>");
+            out.println("<title>BCA | Error de busqueda</title>"
+                    + "        <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css\" integrity=\"sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2\" crossorigin=\"anonymous\">"
+                    + "        <link rel=\"stylesheet\" type=\"text/css\" href=\"css/consultaClienteServlet.css\">"
+                    + "        <link rel=\"icon\" href=\"images/Icon.ico\">");
             out.println("</head>");
             out.println("<body>");
             try {
@@ -64,15 +67,20 @@ public class GestionarPlan extends HttpServlet {
                 }
             } catch (Exception a) {
                 out.println("<h1>Error al buscar el plan.</h1>");
-                out.println("<label>No se pudo encnotrar este plan, verifique que el plan exista, y los datos estén escritos correctamente.</label><br><br>");
-                out.println("<br> <form action=\"PrincipalAdmin.jsp\" method=\"post\">\n"
-                        + "            <input type=\"hidden\" name=\"usernameS\" value=\"" + request.getParameter("usernameS") + "\"/>\n"
-                        + "            <input type=\"submit\" value=\"Volver al inicio\"/>\n"
-                        + "        </form>");
-                out.println("<br> <form action=\"OpcionesPlanes\" method=\"post\">\n"
-                        + "            <input type=\"hidden\" name=\"usernameS\" value=\"" + request.getParameter("usernameS") + "\"/>\n"
-                        + "            <input type=\"submit\" value=\"Volver a la sección de planes\"/>\n"
-                        + "        </form>");
+                
+                 out.println("<div class=\"pantalla text-center\">"
+                        + "            <h4>No se pudo encnotrar este plan, verifique que el plan exista, y los datos estén escritos correctamente.</h4>"
+                        + "            <form action=\"PrincipalAdmin.jsp\" method=\"post\">\n"
+                        + "                 <input type=\"hidden\" name=\"usernameS\" value=\"" + request.getParameter("usernameS") + "\"/>\n"
+                        + "                 <button class=\"btn btn-primary\" id=\"ingresar\" type=\"submit\"> Volver al inicio</button>\n"
+                        + "            </form>"
+                        + "            <br> "
+                        + "            <form action=\"OpcionesPlanes\" method=\"post\">\n"
+                        + "                 <input type=\"hidden\" name=\"usernameS\" value=\"" + request.getParameter("usernameS") + "\"/>\n"
+                        + "                 <button class=\"btn btn-primary\" id=\"ingresar\" type=\"submit\"> Volver a la sección de planes</button>\n"
+                        + "            </form>"
+                        + "  </div>");
+               
             }
 
             out.println("</body>");

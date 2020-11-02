@@ -11,43 +11,74 @@ body{
     padding: 20px;
     width: 800px;
     border-radius: 10px;
-    
 }
-
 
 button{
     width: 45%;
-    margin-top: 10px;
     margin-left: 15px;
+    margin: 10px;
 }
-.pantalla input{
-    color: white;
+#atras{
+    margin-left: 560px;
+    width: 42%;
 }
-label{
+.campos{
+    border: 0;
+    border-radius: 5px;
+    padding: 8px; 
+    margin-right: 10px; 
+}
+.campos input{
+    width: 35%;
+    padding: 5px;
+    margin: 10px;
+}
+.campos label{
     font-family: font-family;
     font-size: 18px;
-    padding-right: 12px;
-    color:red;
+    color: white;
+}
+.escoger{
+    position: center;
+}
+.escoger label{
+    font-family: font-family;
+    font-size: 18px;
+    padding-right: 12px; 
+}
+
+select option{
+    padding: 20px;
+}
+
+
+.rolboton{
+    font-size: 20px;
+    font-family: Comic Sans MS;
+    padding-right: 20px; 
+}
+.g-recaptcha{
+    margin-left: 98px
+}
+select{
+    padding: 10px;
+    width: 60%;
+    border-radius: 5%;
 }
 h1{
-    
     text-align: center;
     font-family: Comic Sans MS;
     font-size: 60px;
     color: white;   
     margin-top: 20px;
+    padding-left: 125px 
 }
-h4{
-    color:red;
-}
-
 h3{
     font-family: Bradley Hand ITC;
     font-size: 30px;
     color: white;
     margin: 10px;
     font-weight: bold;
-    margin-left: 380px;
+    padding: 20px;
+
 }
-
-

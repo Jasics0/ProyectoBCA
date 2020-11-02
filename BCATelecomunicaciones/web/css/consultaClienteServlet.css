@@ -39,15 +39,16 @@ h1{
 }
 h4{
     color:red;
+    font-size: 40px;
+    
 }
 
 h3{
     font-family: Bradley Hand ITC;
     font-size: 30px;
+    text-align: center;
     color: white;
     margin: 10px;
     font-weight: bold;
     margin-left: 380px;
 }
-
-

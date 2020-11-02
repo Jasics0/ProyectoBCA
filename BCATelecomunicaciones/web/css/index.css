@@ -20,6 +20,12 @@ body{
     margin-bottom: 35px;
     
 }
+#imagenlogo{
+    width: 110px;
+    height: 70px;
+    padding: 0px;
+        margin: 0px;
+}
 .user-img img{
     width: 200px;
     height: 200px;
@@ -53,7 +59,8 @@ button{
 h1{
     font-family: Comic Sans MS;
     font-size: 60px;
-    color: white;   
+    color: white; 
+    margin: 0px;
 }
 
 

@@ -42,40 +42,45 @@ public class OpcionesPlanes extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>\n"
                     + "    <head>\n"
-                    + "        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n"
                     + "        <title>BCA | Planes</title>\n"
+                    + "        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n"
+                    + "        <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css\" integrity=\"sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2\" crossorigin=\"anonymous\">"
+                    + "        <link rel=\"stylesheet\" type=\"text/css\" href=\"css/OpcionesPlanesServlets.css\">"
+                    + "        <link rel=\"icon\" href=\"images/Icon.ico\">"
                     + "    </head>\n"
                     + "    <body>\n"
                     + "        <h1>Planes</h1>\n"
                     + "        <h3>Usuario:" + usuario + "</h3>\n"
-                    + "        <form method=\"post\" action=\"GestionarPlan\">\n"
+                    + "        <form class=\"pantalla text-center\" method=\"post\" action=\"GestionarPlan\">\n"
+                    + "        <div class=\"campos\">\n"        
                     + "            <label>Código: </label> <input type=\"text\" name=\"codigo\"/>\n"
-                    + "<br><br>\n"
-                    + "            <input type=\"submit\" name=\"buttom-b\" value=\"Buscar plan\"/>\n"
-                    + "<br><br>\n"
-                    + "            <input type=\"submit\" name=\"buttom-b\" value=\"Borrar plan\"/>\n"
-                    + "<br><br>\n"
-                    + "            <input type=\"hidden\" name=\"usernameS\" value=\"" + usuario + "\"/>\n"
-                    + "        </form>\n"
-                    + "\n"
-                    + "       <br> <form action=\"AgregarPlan.jsp\" method=\"post\">\n"
-                    + "            <input type=\"hidden\" name=\"usernameS\" value=\"" + usuario + "\"/>\n"
-                    + "            <input type=\"submit\"  value=\"Agregar plan\"/>\n"
-                    + "        </form>\n"
-                    + "       <br> <form action=\"PrincipalAdmin.jsp\" method=\"post\">\n"
-                    + "            <input type=\"hidden\" name=\"usernameS\" value=\"" + usuario + "\"/>\n"
-                    + "            <input type=\"submit\" value=\"Atrás\"/>\n"
-                    + "        </form>\n"
-                    + "<br>\n");
-            out.println("<table border><tr><td><label> Codigo </label> <td><label> Plan </label> </td> </tr>");
+                    + "        </div>\n"
+                    + "<br>\n"
+                    +"         <button class=\"btn btn-primary\" name=\"buttom-b\" id=\"ingresar\" type=\"submit\" value=\"Buscar plan\"> Buscar plan</button>"
+                    +"         <button class=\"btn btn-primary\" name=\"buttom-b\" id=\"ingresar\" type=\"submit\" value=\"Borrar plan\"> Borrar plan</button>"
+                    + "        <input type=\"hidden\" name=\"usernameS\" value=\"" + usuario + "\"/>\n"
+                    + "\n");
+            out.println("<div><table border><<thead><tr><th scope=\"col\"> Codigo</th><th scope=\"col\"> Plan </th></tr></thead><tbody>");
             for (int i = 0; i < daoPlan.getPlanesCount(); i++) {
                 out.println("<tr>");
                 out.println("<td><label> " + daoPlan.findPlanesEntities().get(i).getCodProducto() + "</label> </td>");
                 out.println("<td><label> " + daoPlan.findPlanesEntities().get(i).getNombre() + "</label> </td>");
                 out.println("</tr>");
-
             }
-            out.println("</table></body> </html>");
+            out.println("</tbody></table></div></form>"
+                    + "        <form action=\"AgregarPlan.jsp\" method=\"post\">\n"
+                    + "            <input type=\"hidden\" name=\"usernameS\" value=\"" + usuario + "\"/>\n"
+                    + "            <button class=\"btn btn-primary\" id=\"atras\" type=\"submit\"> Agregar plan </button>\n"         
+                    + "        </form>\n"
+                    + "       <form action=\"PrincipalAdmin.jsp\" method=\"post\">\n"
+                    + "            <input type=\"hidden\" name=\"usernameS\" value=\"" + usuario + "\"/>\n"
+                    + "            <button class=\"btn btn-primary\" id=\"atras\" type=\"submit\"> Atrás</button>\n"
+                    + "        </form>\n"
+                    + " <script src=\"js/ContraseñaOcultar.js\" type=\"text/javascript\"></script>"
+                    + "<script src=\"https://code.jquery.com/jquery-3.5.1.slim.min.js\" integrity=\"sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj\" crossorigin=\"anonymous\"></script>"
+                    + "<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx\" crossorigin=\"anonymous\"></script>"
+                    + "</body> </html>");
+                   
 
         }
     }

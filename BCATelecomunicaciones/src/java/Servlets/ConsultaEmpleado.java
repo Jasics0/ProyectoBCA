@@ -43,7 +43,7 @@ public class ConsultaEmpleado extends HttpServlet {
             out.println("<head>");
             out.println("<title>BCA | Error de busqueda</title>"
                     + "        <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css\" integrity=\"sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2\" crossorigin=\"anonymous\">"
-                    + "        <link rel=\"stylesheet\" type=\"text/css\" href=\"css/BuscarCliente.css\">"
+                    + "        <link rel=\"stylesheet\" type=\"text/css\" href=\"css/ConsultaEmpleadoServlets.css\">"
                     + "        <link rel=\"icon\" href=\"images/Icon.ico\">");
             out.println("</head>");
             out.println("<body>");

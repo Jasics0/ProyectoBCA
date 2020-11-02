@@ -50,7 +50,10 @@ public class CrearEmpleadoServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CrearEmpleadoServlet</title>");
+            out.println("<title>Servlet CrearEmpleadoServlet</title>"
+                    + "        <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css\" integrity=\"sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2\" crossorigin=\"anonymous\">"
+                    + "        <link rel=\"stylesheet\" type=\"text/css\" href=\"css/consultaClienteServlet.css\">"
+                    + "        <link rel=\"icon\" href=\"images/Icon.ico\">");
             out.println("</head>");
             out.println("<body>");
 
@@ -61,20 +64,24 @@ public class CrearEmpleadoServlet extends HttpServlet {
                 request.getRequestDispatcher("Empleados.jsp").forward(request, response);
             } catch (Exception a) {
                 out.println("<h1>Error al registrar empleado.</h1>");
-                out.println("<label>No se pudo registrar este empleado, verifique que el empleado no esté repetido, y los datos estén escritos correctamente.</label><br><br>");
-                out.println("  <form action=\"CrearEmpleado.jsp\" method=\"post\">\n"
+                 out.println("<div class=\"pantalla text-center\">"
+                        + "           <h4>No se pudo registrar este empleado, verifique que el empleado no esté repetido, y los datos estén escritos correctamente.</h4>"
+                        + "           <form action=\"CrearEmpleado.jsp\" method=\"post\">\n"
+                        + "                  <input type=\"hidden\" name=\"usernameS\" value=\"" + request.getParameter("usernameS") + "\"/>\n"
+                        + "                  <button class=\"btn btn-primary\" id=\"ingresar\" type=\"submit\"> Volver al registro</button>\n"
+                        + "            </form>"
+                        + "            <br>"
+                        + "            <form action=\"PrincipalAdmin.jsp\" method=\"post\">\n"
+                        + "                 <input type=\"hidden\" name=\"usernameS\" value=\"" + request.getParameter("usernameS") + "\"/>\n"
+                        + "                 <button class=\"btn btn-primary\" id=\"ingresar\" type=\"submit\"> Volver al inicio</button>\n"
+                        + "        </form>"
+                        + "        <br> "
+                        + "        <form action=\"Empleados.jsp\" method=\"post\">\n"
                         + "            <input type=\"hidden\" name=\"usernameS\" value=\"" + request.getParameter("usernameS") + "\"/>\n"
-                        + "            <input type=\"submit\" value=\"Volver al registro\"/>\n"
-                        + "        </form>");
-                out.println("<br> <form action=\"PrincipalAdmin.jsp\" method=\"post\">\n"
-                        + "            <input type=\"hidden\" name=\"usernameS\" value=\"" + request.getParameter("usernameS") + "\"/>\n"
-                        + "            <input type=\"submit\" value=\"Volver al inicio\"/>\n"
-                        + "        </form>");
-                out.println("<br> <form action=\"Empleados.jsp\" method=\"post\">\n"
-                        + "            <input type=\"hidden\" name=\"usernameS\" value=\"" + request.getParameter("usernameS") + "\"/>\n"
-                        + "            <input type=\"submit\" value=\"Volver a la sección de empleados\"/>\n"
-                        + "        </form>");
-
+                        + "            <button class=\"btn btn-primary\" id=\"ingresar\" type=\"submit\"> Volver a la sección de empleados</button>\n"
+                        + "        </form>"
+                        + "  </div>");
+ 
             }
             out.println("</body>");
             out.println("</html>");

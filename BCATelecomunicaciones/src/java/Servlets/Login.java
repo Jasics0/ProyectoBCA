@@ -35,7 +35,10 @@ public class Login extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>BCA | Login</title>");
+            out.println("<title>BCA | Login</title>"
+                    + "        <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css\" integrity=\"sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2\" crossorigin=\"anonymous\">"
+                    + "        <link rel=\"stylesheet\" type=\"text/css\" href=\"css/consultaClienteServlet.css\">"
+                    + "        <link rel=\"icon\" href=\"images/Icon.ico\">");
             out.println("</head>");
             out.println("<body>");
 
@@ -51,14 +54,18 @@ public class Login extends HttpServlet {
                     }
                 } else {
                     out.println("<h1>Error al ingresar:</h1>");
-                    out.println("<label>Esté usuario ha sido suspendido.</label><br><br>");
-                    out.println("<button onclick=\"location.href='index.jsp'\">Volver al Login</button>");
+                    out.println("<div class=\"pantalla text-center\">"
+                        + "        <h4>Esté usuario ha sido suspendido.</h4>"
+                        + "        <button class=\"btn btn-primary\" id=\"ingresar\"  onclick=\"location.href='index.jsp'\">Volver al Login</button>"         
+                        + "  </div>");
                 }
 
             } else {
                 out.println("<h1>Error al ingresar:</h1>");
-                out.println("<label>No se pudo ingresar, verifique que su usuario y contraseña estén escritos correctamente.</label><br><br>");
-                out.println("<button onclick=\"location.href='index.jsp'\">Volver al Login</button>");
+                 out.println("<div class=\"pantalla text-center\">"
+                        + "        <h4>No se pudo ingresar, verifique que su usuario y contraseña estén escritos correctamente.</h4>"
+                        + "        <button class=\"btn btn-primary\" id=\"ingresar\" onclick=\"location.href='index.jsp'\">Volver al Login</button>"        
+                        + "  </div>");
             }
             out.println("</body>");
             out.println("</html>");

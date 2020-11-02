@@ -57,12 +57,12 @@ public class BuscarCliente extends HttpServlet {
                     + "            <label>Cedula: </label> <input type=\"text\" name=\"id\"/>\n"
                               +"</div>\n"
                     + "<br>\n"
-                    +"         <button class=\"btn btn-primary\" name=\"buttom-b\" id=\"ingresar\" type=\"submit\"> Buscar cliente</button>"
-                    +"         <button class=\"btn btn-primary\" name=\"buttom-b\" id=\"ingresar\" type=\"submit\"> Editar cliente</button>"
+                    +"         <button class=\"btn btn-primary\" name=\"buttom-b\" id=\"ingresar\" type=\"submit\" value=\"buscar\"> Buscar cliente</button>"
+                    +"         <button class=\"btn btn-primary\" name=\"buttom-b\" id=\"ingresar\" type=\"submit\" value=\"editar\"> Editar cliente</button>"
                     + "            <input type=\"hidden\" name=\"usernameS\" value=\"" + usuario + "\"/>\n"
                    
                     + "\n"
-            +"<div>\"><table border><thead><tr><th scope=\"col\">Cedula</th><th scope=\"col\">Nombre</th><th scope=\"col\">Estado</th></tr></thead><tbody>");
+            +"<div>><table border><thead><tr><th scope=\"col\">Cedula</th><th scope=\"col\">Nombre</th><th scope=\"col\">Estado</th></tr></thead><tbody>");
             for (int i = 0; i < daoClient.getClientesCount(); i++) {
                 out.println("<tr>");
                 out.println("<td><label> " + daoClient.findClientesEntities().get(i).getIdCliente() + "</label> </td>");

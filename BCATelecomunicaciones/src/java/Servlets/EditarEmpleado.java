@@ -51,7 +51,10 @@ try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Editar Empleado</title>");
+            out.println("<title>Editar Empleado</title>"
+                    + "        <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css\" integrity=\"sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2\" crossorigin=\"anonymous\">"
+                    + "        <link rel=\"stylesheet\" type=\"text/css\" href=\"css/consultaClienteServlet.css\">"
+                    + "        <link rel=\"icon\" href=\"images/Icon.ico\">");
             out.println("</head>");
             out.println("<body>");
 
@@ -64,13 +67,14 @@ try (PrintWriter out = response.getWriter()) {
                 request.getRequestDispatcher("Empleados.jsp").forward(request, response);
             } catch (Exception a) {
                 out.println("<h1>Error al registrar empleado.</h1>");
-                out.println("<h1>" + a.getMessage() +id+ "</h1>");
-
-                out.println("<label>No se pudo editar este empleado, verifique que el empleado no esté repetido, y los datos estén escritos correctamente.</label><br><br>");
-                out.println("<button onclick=\"location.href='CrearEmpleado.jsp'\">Volver al registro</button>");
-                out.println("<button onclick=\"location.href='PrincipalAdmin.jsp'\">Volver al inicio</button>");
-                out.println("<button onclick=\"location.href='Empleados.jsp'\">Volver a la seccion empleados</button>");
-                request.setAttribute("usernameS", request.getParameter("usernameS"));
+                out.println("<div class=\"pantalla text-center\">"
+                        + "        <h3>" + a.getMessage() + id + "</h3>"
+                        + "        <h4>No se pudo editar este cliente, verifique que el cliente no esté repetido, y los datos estén escritos correctamente.</h4>"
+                        + "        <button class=\"btn btn-primary\" id=\"ingresar\" onclick=\"location.href='CrearEmpleado.jsp'\">Volver al registro</button>"
+                        + "        <button class=\"btn btn-primary\" id=\"ingresar\" onclick=\"location.href='PrincipalAdmin.jsp'\">Volver al inicio</button>"
+                        + "        <button class=\"btn btn-primary\" id=\"ingresar\" onclick=\"location.href='Empleados.jsp'\">Volver a la seccion empleados</button>"        
+                        + "  </div>");
+                        request.setAttribute("usernameS", request.getParameter("usernameS"));
 
             }
             out.println("</body>");
