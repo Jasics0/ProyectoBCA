@@ -8,9 +8,6 @@ package Servlets;
 import DAO.TicketsJpaController;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.servlet.ServletException;
@@ -19,13 +16,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import DTO.Tickets;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 /**
  *
  * @author Retr0
  */
-@WebServlet(name = "CrearTicket", urlPatterns = {"/CrearTicket"})
-public class CrearTicket extends HttpServlet {
+@WebServlet(name = "GestionarTicket", urlPatterns = {"/GestionarTicket"})
+public class GestionarTicket extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,55 +38,74 @@ public class CrearTicket extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("BCATelecomunicacionesPU");
+        TicketsJpaController daoTick = new TicketsJpaController(emf);
+        Tickets tick = null;
+        String prioridad = "";
+
         try (PrintWriter out = response.getWriter()) {
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("BCATelecomunicacionesPU");
-            TicketsJpaController daoTick = new TicketsJpaController(emf);
-            Date date = new Date();
-            Tickets ticket = new Tickets(request.getParameter("descripcion"), date, null, request.getParameter("prioridad"), true, request.getParameter("cedula"), request.getParameter("usernameS"));
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AgregarPlan</title>");
+            out.println("<title>BCA | Error de busqueda</title>");
             out.println("</head>");
             out.println("<body>");
-
             try {
-
-                for (int i = 0; i < daoTick.getTicketsCount(); i++) {
-                    if (daoTick.findTicketsEntities().get(i).getIdCliente().getIdCliente().equals(request.getParameter("cedula"))) {
-                        if (daoTick.findTicketsEntities().get(i).getEstadoTicket() == true) {
-                            throw new Exception();
-                        }
+                int i = 0;
+                for (i = 0; i < daoTick.getTicketsCount(); i++) {
+                    if (daoTick.findTicketsEntities().get(i).getEstadoTicket() == true && daoTick.findTicketsEntities().get(i).getIdCliente().getIdCliente().equals(request.getParameter("codigo"))) {
+                        tick = daoTick.findTicketsEntities().get(i);
+                        break;
                     }
                 }
 
-                if (ticket.getIdCliente() != null) {
-                    daoTick.create(ticket);
-                    request.setAttribute("usernameS", request.getParameter("usernameS"));
-                    request.getRequestDispatcher("Tickets").forward(request, response);
-                } else {
+                String direccion = request.getParameter("buttom-b").toLowerCase();
+                request.setAttribute("usernameS", request.getParameter("usernameS"));
+                request.setAttribute("codigo", tick.getCodigoTicket());
+                request.setAttribute("descripcion", tick.getServicio());
+                request.setAttribute("cedula", tick.getIdCliente().getIdCliente());
+                
+                switch (tick.getPrioridad().charAt(0)) {
+                    case 'u':
+                        prioridad = "urgente";
+                        break;
+                    case 'm':
+                        prioridad = "media";
+                        break;
+                    case 'b':
+                        prioridad = "baja";
+                        break;
+                    default:
+                        break;
+                }
+                request.setAttribute("prioridad", prioridad);
+                request.setAttribute("estado", (tick.getEstadoTicket()) ? "Activo" : "Cerrado");
+                if (i == (daoTick.getTicketsCount() - 1) && tick == null) {
                     throw new Exception();
                 }
-
+                if (direccion.contains("buscar")) {
+                    request.getRequestDispatcher("BuscarTicket.jsp").forward(request, response);
+                } else {
+                    //daoPlan.destroy(plan.getCodProducto());
+                    request.getRequestDispatcher("EditarTicket.jsp").forward(request, response);
+                }
             } catch (Exception a) {
-                out.println("<h1>Error al crear el ticket.</h1>");
-                out.println("<label>No se pudo crear este ticket, verifique que los datos estén escritos correctamente y no tenga tickets activos.</label><br><br>");
-                out.println("  <form action=\"CrearTicket.jsp\" method=\"post\">\n"
-                        + "            <input type=\"hidden\" name=\"usernameS\" value=\"" + request.getParameter("usernameS") + "\"/>\n"
-                        + "            <input type=\"submit\" value=\"Volver al registro\"/>\n"
-                        + "        </form>");
+                out.println("<h1>Error al buscar el plan.</h1>");
+                out.println("<label>No se pudo encnotrar este plan, verifique que el plan exista, y los datos estén escritos correctamente.</label><br><br>");
                 out.println("<br> <form action=\"PrincipalAdmin.jsp\" method=\"post\">\n"
                         + "            <input type=\"hidden\" name=\"usernameS\" value=\"" + request.getParameter("usernameS") + "\"/>\n"
                         + "            <input type=\"submit\" value=\"Volver al inicio\"/>\n"
                         + "        </form>");
-                out.println("<br> <form action=\"Tickets\" method=\"post\">\n"
+                out.println("<br> <form action=\"OpcionesPlanes\" method=\"post\">\n"
                         + "            <input type=\"hidden\" name=\"usernameS\" value=\"" + request.getParameter("usernameS") + "\"/>\n"
                         + "            <input type=\"submit\" value=\"Volver a la sección de planes\"/>\n"
                         + "        </form>");
-
             }
+
             out.println("</body>");
             out.println("</html>");
+        } catch (Exception ex) {
+            System.out.println(ex);
         }
     }
 

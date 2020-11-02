@@ -5,12 +5,10 @@
  */
 package Servlets;
 
+import DAO.EmpleadosJpaController;
 import DAO.TicketsJpaController;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.servlet.ServletException;
@@ -19,13 +17,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import DTO.Tickets;
+import java.util.Date;
 
 /**
  *
  * @author Retr0
  */
-@WebServlet(name = "CrearTicket", urlPatterns = {"/CrearTicket"})
-public class CrearTicket extends HttpServlet {
+@WebServlet(name = "EditarTicket", urlPatterns = {"/EditarTicket"})
+public class EditarTicket extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,48 +41,52 @@ public class CrearTicket extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("BCATelecomunicacionesPU");
             TicketsJpaController daoTick = new TicketsJpaController(emf);
-            Date date = new Date();
-            Tickets ticket = new Tickets(request.getParameter("descripcion"), date, null, request.getParameter("prioridad"), true, request.getParameter("cedula"), request.getParameter("usernameS"));
+            Tickets ticket = daoTick.findTickets(request.getParameter("codigo"));
+            Tickets ticket2 = ticket;
+            ticket2.setIdEmpleado((new EmpleadosJpaController(emf)).findEmpleados(request.getParameter("cedula")));
+            ticket2.setServicio(request.getParameter("descripcion"));
+            String prioridad = "";
+
+            switch (request.getParameter("prioridad").charAt(0)) {
+                case 'u':
+                    prioridad = "urgente";
+                    break;
+                case 'm':
+                    prioridad = "media";
+                    break;
+                case 'b':
+                    prioridad = "baja";
+                    break;
+                default:
+                    break;
+            }
+
+            ticket2.setPrioridad(prioridad);
+            ticket2.setEstadoTicket((request.getParameter("estado").equals("activo")) ? true : false);
+            if (!ticket2.getEstadoTicket()) {
+                ticket2.setFechaFinal(new Date());
+            }
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AgregarPlan</title>");
+            out.println("<title>Editar Empleado</title>");
             out.println("</head>");
             out.println("<body>");
 
             try {
-
-                for (int i = 0; i < daoTick.getTicketsCount(); i++) {
-                    if (daoTick.findTicketsEntities().get(i).getIdCliente().getIdCliente().equals(request.getParameter("cedula"))) {
-                        if (daoTick.findTicketsEntities().get(i).getEstadoTicket() == true) {
-                            throw new Exception();
-                        }
-                    }
-                }
-
-                if (ticket.getIdCliente() != null) {
-                    daoTick.create(ticket);
-                    request.setAttribute("usernameS", request.getParameter("usernameS"));
-                    request.getRequestDispatcher("Tickets").forward(request, response);
-                } else {
-                    throw new Exception();
-                }
-
+                daoTick.destroy(request.getParameter("codigo"));
+                daoTick.create(ticket2);
+                request.setAttribute("usernameS", request.getParameter("usernameS"));
+                request.getRequestDispatcher("Tickets").forward(request, response);
             } catch (Exception a) {
-                out.println("<h1>Error al crear el ticket.</h1>");
-                out.println("<label>No se pudo crear este ticket, verifique que los datos estén escritos correctamente y no tenga tickets activos.</label><br><br>");
-                out.println("  <form action=\"CrearTicket.jsp\" method=\"post\">\n"
-                        + "            <input type=\"hidden\" name=\"usernameS\" value=\"" + request.getParameter("usernameS") + "\"/>\n"
-                        + "            <input type=\"submit\" value=\"Volver al registro\"/>\n"
-                        + "        </form>");
-                out.println("<br> <form action=\"PrincipalAdmin.jsp\" method=\"post\">\n"
-                        + "            <input type=\"hidden\" name=\"usernameS\" value=\"" + request.getParameter("usernameS") + "\"/>\n"
-                        + "            <input type=\"submit\" value=\"Volver al inicio\"/>\n"
-                        + "        </form>");
-                out.println("<br> <form action=\"Tickets\" method=\"post\">\n"
-                        + "            <input type=\"hidden\" name=\"usernameS\" value=\"" + request.getParameter("usernameS") + "\"/>\n"
-                        + "            <input type=\"submit\" value=\"Volver a la sección de planes\"/>\n"
-                        + "        </form>");
+                out.println("<h1>Error al registrar empleado.</h1>");
+                out.println("<h1> </h1>");
+
+                out.println("<label>No se pudo editar este empleado, verifique que el empleado no esté repetido, y los datos estén escritos correctamente.</label><br><br>");
+                out.println("<button onclick=\"location.href='CrearEmpleado.jsp'\">Volver al registro</button>");
+                out.println("<button onclick=\"location.href='PrincipalAdmin.jsp'\">Volver al inicio</button>");
+                out.println("<button onclick=\"location.href='Empleados.jsp'\">Volver a la seccion empleados</button>");
+                request.setAttribute("usernameS", request.getParameter("usernameS"));
 
             }
             out.println("</body>");
