@@ -42,8 +42,8 @@ caption {
 }
 button{
     width: 45%;
-    margin-top: 10px;
     margin-left: 15px;
+    margin: 10px;
 }
 #atras{
     margin-left: 560px;
@@ -90,5 +90,3 @@ h3{
     font-weight: bold;
     margin-left: 380px;
 }
-
-

@@ -41,7 +41,10 @@ public class ConsultaEmpleado extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>BCA | Error de busqueda</title>");
+            out.println("<title>BCA | Error de busqueda</title>"
+                    + "        <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css\" integrity=\"sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2\" crossorigin=\"anonymous\">"
+                    + "        <link rel=\"stylesheet\" type=\"text/css\" href=\"css/BuscarCliente.css\">"
+                    + "        <link rel=\"icon\" href=\"images/Icon.ico\">");
             out.println("</head>");
             out.println("<body>");
             try {
@@ -65,19 +68,23 @@ public class ConsultaEmpleado extends HttpServlet {
                 }
             } catch (Exception a) {
                 out.println("<h1>Error al buscar empleado.</h1>");
-                out.println("<label>No se pudo encnotrar este empleado, verifique que el empleado exista, y los datos estén escritos correctamente.</label><br><br>");
-                out.println("  <form action=\"BuscarEmpleado\" method=\"post\">\n"
+                out.println(" <div class=\"pantalla text-center\"> "
+                        + "        <h4 >No se pudo encnotrar este empleado, verifique que el empleado exista, y los datos estén escritos correctamente.</h4><br>"
+                        + "        <form action=\"BuscarEmpleado\" method=\"post\">\n"
                         + "            <input type=\"hidden\" name=\"usernameS\" value=\"" + request.getParameter("usernameS") + "\"/>\n"
-                        + "            <input type=\"submit\" value=\"Volver a la busqueda\"/>\n"
-                        + "        </form>");
-                out.println("<br> <form action=\"PrincipalAdmin.jsp\" method=\"post\">\n"
+                        + "            <button class=\"btn btn-primary\" id=\"ingresar\" type=\"submit\"> Volver a la busqueda</button>\n"
+                        + "        </form>"
+                        + "        <br> "
+                        + "        <form action=\"PrincipalAdmin.jsp\" method=\"post\">\n"
                         + "            <input type=\"hidden\" name=\"usernameS\" value=\"" + request.getParameter("usernameS") + "\"/>\n"
-                        + "            <input type=\"submit\" value=\"Volver al inicio\"/>\n"
-                        + "        </form>");
-                out.println("<br> <form action=\"Empleados.jsp\" method=\"post\">\n"
+                        + "            <button class=\"btn btn-primary\" id=\"ingresar\" type=\"submit\"> Volver al inicio</button>\n"
+                        + "        </form>"
+                        + "        <br>"
+                        + "        <form action=\"Empleados.jsp\" method=\"post\">\n"
                         + "            <input type=\"hidden\" name=\"usernameS\" value=\"" + request.getParameter("usernameS") + "\"/>\n"
-                        + "            <input type=\"submit\" value=\"Volver a la sección de empleados\"/>\n"
-                        + "        </form>");
+                        + "            <button class=\"btn btn-primary\" id=\"ingresar\" type=\"submit\"> Volver a la sección de empleados</button>\n"
+                        + "        </form>"
+                        + "  </div>");
             }
 
             out.println("</body>");

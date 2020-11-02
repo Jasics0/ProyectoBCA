@@ -54,12 +54,12 @@ public class BuscarEmpleado extends HttpServlet {
                     + "        <form class=\"pantalla text-center\" method=\"post\" action=\"ConsultaEmpleado\">\n"
                     + "        <div class=\"campos\">\n"
                     + "            <label>Cedula: </label> <input type=\"text\" name=\"username-empleado\"/>\n"
-                    + "        </div>\n" 
+                    + "        </div>\n"
                     + "        <button class=\"btn btn-primary\" name=\"buttom-b\" id=\"ingresar\" type=\"submit\"> Buscar empleado</button>"
                     +"         <button class=\"btn btn-primary\" name=\"buttom-b\" id=\"ingresar\" type=\"submit\"> Editar empleado</button>"            
                     + "        <input type=\"hidden\" name=\"usernameS\" value=\"" + usuario + "\"/>\n"        
                     + "\n"
- 
+
                     + "<table border><thead><tr><th scope=\"col\"> Cedula</th><th scope=\"col\"> Nombre</th><th scope=\"col\">Username</th><th scope=\"col\">Estado</th></tr></thead><tbody>");
             for (int i = 0; i < daoEmp.getEmpleadosCount(); i++) {
                 out.println("<tr>");

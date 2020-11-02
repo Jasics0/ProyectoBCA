@@ -1,0 +1,51 @@
+body{
+    background: url(../images/slider4.jpg) no-repeat center fixed;
+    background-size: cover;
+}
+
+.pantalla{margin: 0 auto;
+    align-content: center;
+    background-color: #3b4652;
+    opacity: .95; 
+    box-shadow: 0px 0px 3px #848484;
+    padding: 20px;
+    width: 800px;
+    border-radius: 10px;
+    
+}
+
+
+button{
+    width: 45%;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+.pantalla input{
+    color: white;
+}
+label{
+    font-family: font-family;
+    font-size: 18px;
+    padding-right: 12px;
+    color:red;
+}
+h1{
+    
+    text-align: center;
+    font-family: Comic Sans MS;
+    font-size: 60px;
+    color: white;   
+    margin-top: 20px;
+}
+
+
+h3{
+    font-family: Bradley Hand ITC;
+    font-size: 30px;
+    color: white;
+    margin: 10px;
+    font-weight: bold;
+    margin-left: 380px;
+}
+
+
