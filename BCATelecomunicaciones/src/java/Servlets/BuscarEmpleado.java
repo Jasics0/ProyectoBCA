@@ -55,8 +55,8 @@ public class BuscarEmpleado extends HttpServlet {
                     + "        <div class=\"campos\">\n"
                     + "            <label>Cedula: </label> <input type=\"text\" name=\"username-empleado\"/>\n"
                     + "        </div>\n"
-                    + "        <button class=\"btn btn-primary\" name=\"buttom-b\" id=\"ingresar\" type=\"submit\"> Buscar empleado</button>"
-                    +"         <button class=\"btn btn-primary\" name=\"buttom-b\" id=\"ingresar\" type=\"submit\"> Editar empleado</button>"            
+                    + "        <button class=\"btn btn-primary\" name=\"buttom-b\" id=\"ingresar\" type=\"submit\" value=\"buscar\" >Buscar empleado</button>"
+                    +"         <button class=\"btn btn-primary\" name=\"buttom-b\" id=\"ingresar\" type=\"submit\" value=\"editar\">Editar empleado</button>"            
                     + "        <input type=\"hidden\" name=\"usernameS\" value=\"" + usuario + "\"/>\n"        
                     + "\n"
 
